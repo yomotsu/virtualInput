@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width">
+<title>=^.^=</title>
+<link rel="stylesheet" href="virtualInput.css">
+<style>
+body{
+  background: #999;
+}
+
+#joystick1{
+  bottom: 30px;
+  left: 30px;
+}
+#joystick2{
+  bottom: 30px;
+  right: 30px;
+}
+#button1{
+  bottom: 240px;
+  right: 30px;
+}
+#button2{
+  bottom: 240px;
+  right: 120px;
+}
+
+.virtualInput-joystick__frame{
+  opacity: .5;
+}
+.virtualInput-joystick__button{
+  border: 1px solid #333;
+  background: rgba( 255, 255, 255, .5 );
+}
+.virtualInput-joystick__arrowUp,
+.virtualInput-joystick__arrowRight,
+.virtualInput-joystick__arrowDown,
+.virtualInput-joystick__arrowLeft{
+  fill: #fff;
+}
+.virtualInput-joystick__circle{
+  fill: none;
+  stroke: #fff;
+}
+.virtualInput-button{
+  border: 1px solid #333;
+  background: rgba( 255, 255, 255, .5 );
+}
+
+</style>
+
+</head>
+<body>
+responses will appear on your console. open your console to see the log.
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="virtualInput.js"></script>
+<script>
+
+var joystick1 = new virtualInput.Joystick( $( document.body ), 120, { id: 'joystick1' } );
+var joystick2 = new virtualInput.Joystick( $( document.body ), 120, { id: 'joystick2' } );
+var button1 = new virtualInput.Button( $( document.body ), 70, { id: 'button1', label: 'button1' } );
+var button2 = new virtualInput.Button( $( document.body ), 70, { id: 'button2', label: 'button2' } );
+// var lButton = new virtualInput.SquareButton( $( document.body ), 80, 40, { id: 'lButton', label: '→' } );
+// var rButton = new virtualInput.SquareButton( $( document.body ), 80, 40, { id: 'rButton', label: '←' } );
+
+
+
+
+var radToDeg = function( rad ) {
+  return rad * 180 / Math.PI;
+};
+
+joystick1.addEventListener( 'move', function () {
+
+  var rad = this.getAngle();
+
+  console.log(
+    rad + 'rad',
+    radToDeg( rad ) + 'deg'
+  );
+
+} );
+
+joystick2.addEventListener( 'move', function () {
+
+  var rad = this.getAngle();
+
+  console.log(
+    rad + 'rad',
+    radToDeg( rad ) + 'deg'
+  );
+
+} );
+
+button1.addEventListener( 'press', function () { console.log( 'button1' );} );
+button2.addEventListener( 'press', function () { console.log( 'button2' );} );
+// lButton.addEventListener( 'press', function () {} );
+// rButton.addEventListener( 'press', function () {} );
+
+</script>
+</body>
+</html>
